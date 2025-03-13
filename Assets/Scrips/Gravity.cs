@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-    
+    [SerializeField] bool planet = false;
+    [SerializeField] int orbitSpeed = 1000;
     Rigidbody rb;
 
     const float G = 0.00667f;
@@ -21,6 +22,12 @@ public class Gravity : MonoBehaviour
             gravityobjectlist = new List<Gravity>();
         }
         gravityobjectlist.Add(this);
+
+        //orbit
+        if (!planet)
+        {
+            rb.AddForce(Vector3.left * orbitSpeed);
+        }
     }
 
     void attract(Gravity other)
